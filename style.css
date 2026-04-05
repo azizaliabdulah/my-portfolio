@@ -1,6 +1,4 @@
-/* =========================
-   1) إعدادات عامة
-========================= */
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -21,7 +19,7 @@ body {
     position: relative;
 }
 
-/* خلفية عامة مشابهة للرئيسية */
+
 body::before {
     content: "";
     position: fixed;
@@ -45,9 +43,7 @@ body::after {
     z-index: -1;
 }
 
-/* =========================
-   2) الهيدر والقائمة
-========================= */
+
 header {
     background: rgba(15, 23, 42, 0.92);
     padding: 20px 50px;
@@ -104,9 +100,7 @@ nav ul li a:hover {
     box-shadow: inset 0 0 0 1px rgba(56, 189, 248, 0.15);
 }
 
-/* =========================
-   3) الصفحة الرئيسية - المهارات
-========================= */
+
 .skills-grid {
     display: flex;
     flex-wrap: wrap;
@@ -139,9 +133,7 @@ nav ul li a:hover {
     color: #38bdf8;
 }
 
-/* =========================
-   4) الصفحة الرئيسية - الهيرو
-========================= */
+
 .main-content {
     width: 100%;
 }
@@ -202,14 +194,12 @@ nav ul li a:hover {
     line-height: 2;
 }
 
-/* =========================
-   5) صفحة المشاريع
-========================= */
+
 body.projects-page {
     background: #020617;
 }
 
-/* حتى ما تنعكس عناصر المشاريع */
+
 body.projects-page,
 body.projects-page .portfolio-grid-system,
 body.projects-page .small-items-row,
@@ -259,7 +249,7 @@ body.projects-page iframe {
     margin: 0 auto;
 }
 
-/* نظام المعرض */
+
 .portfolio-grid-system {
     display: flex;
     flex-direction: column;
@@ -380,7 +370,7 @@ body.projects-page iframe {
     box-shadow: 0 14px 28px rgba(14, 165, 233, 0.3);
 }
 
-/* صفوف المشاريع الصغيرة */
+
 .small-items-row {
     width: 100%;
     display: grid;
@@ -388,9 +378,7 @@ body.projects-page iframe {
     gap: 28px;
 }
 
-/* =========================
-   6) تواصل معي
-========================= */
+
 .contact-section,
 .contact-page {
     max-width: 1200px;
@@ -417,9 +405,7 @@ body.projects-page iframe {
     line-height: 2;
 }
 
-/* =========================
-   7) الفوتر
-========================= */
+
 .footer-simple {
     padding: 34px 20px;
     background: rgba(15, 23, 42, 0.9);
@@ -430,9 +416,7 @@ body.projects-page iframe {
     z-index: 2;
 }
 
-/* =========================
-   8) Responsive
-========================= */
+
 @media (max-width: 992px) {
     .large-item iframe {
         height: 460px;
@@ -488,7 +472,7 @@ body.projects-page iframe {
 }
 
 
-/* العناوين الكبيرة في كل الصفحات */
+
 h1,
 h2,
 .hero-title,
@@ -498,7 +482,7 @@ h2,
     color: #f8fafc !important;
 }
 
-/* توحيد لون كل العناوين في الموقع */
+
 .hero-title,
 .main-title,
 .projects-title,
