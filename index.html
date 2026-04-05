@@ -1,0 +1,436 @@
+!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عبدالعزيز علي | محلل بيانات</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #070d1a;
+            --bg2: #0b1428;
+            --surface: #0f1e35;
+            --border: #1a2f4a;
+            --accent: #00c6ff;
+            --accent2: #0072ff;
+            --gold: #f0c040;
+            --text: #e8f0fe;
+            --muted: #7a90aa;
+            --card-bg: rgba(15, 30, 53, 0.7);
+        }
+ 
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+ 
+        html { scroll-behavior: smooth; }
+ 
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+ 
+        /* ── Background ── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 80% 60% at 80% 10%, rgba(0,114,255,0.12) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 40% at 10% 80%, rgba(0,198,255,0.08) 0%, transparent 55%);
+            pointer-events: none;
+            z-index: 0;
+        }
+ 
+        /* Grid texture */
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(0,198,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,198,255,0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 0;
+        }
+ 
+        /* ── Nav ── */
+        header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 0 2rem;
+            backdrop-filter: blur(14px);
+            background: rgba(7,13,26,0.75);
+            border-bottom: 1px solid var(--border);
+        }
+ 
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+ 
+        .logo {
+            font-size: 1.15rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 0.02em;
+        }
+ 
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 0.25rem;
+        }
+ 
+        nav ul a {
+            text-decoration: none;
+            color: var(--muted);
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 0.4rem 1rem;
+            border-radius: 8px;
+            transition: color 0.2s, background 0.2s;
+        }
+ 
+        nav ul a:hover, nav ul a.active {
+            color: var(--accent);
+            background: rgba(0,198,255,0.08);
+        }
+ 
+        /* ── Hero ── */
+        .hero {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 100px 2rem 4rem;
+        }
+ 
+        .hero-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+ 
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(0,198,255,0.1);
+            border: 1px solid rgba(0,198,255,0.25);
+            border-radius: 100px;
+            padding: 0.3rem 1rem;
+            font-size: 0.8rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            animation: fadeUp 0.6s ease both;
+        }
+ 
+        .badge::before {
+            content: '';
+            width: 7px; height: 7px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+ 
+        @keyframes pulse {
+            0%,100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(1.4); }
+        }
+ 
+        h1 {
+            font-size: clamp(2.2rem, 5vw, 4rem);
+            font-weight: 900;
+            line-height: 1.15;
+            margin-bottom: 1.25rem;
+            animation: fadeUp 0.7s 0.1s ease both;
+        }
+ 
+        h1 .name {
+            background: linear-gradient(130deg, var(--accent) 0%, #60a5fa 50%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+ 
+        .tagline {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: var(--muted);
+            max-width: 680px;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            animation: fadeUp 0.7s 0.2s ease both;
+        }
+ 
+        .about-text {
+            font-size: 0.95rem;
+            color: #5a7090;
+            max-width: 680px;
+            line-height: 2;
+            animation: fadeUp 0.7s 0.3s ease both;
+        }
+ 
+        .hero-divider {
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+            margin: 2rem 0;
+            border-radius: 2px;
+            animation: fadeUp 0.7s 0.25s ease both;
+        }
+ 
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+ 
+        /* Floating data decoration */
+        .hero-decoration {
+            position: absolute;
+            left: 4%;
+            top: 20%;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            opacity: 0.18;
+            pointer-events: none;
+            animation: float 8s ease-in-out infinite;
+        }
+ 
+        @keyframes float {
+            0%,100% { transform: translateY(0); }
+            50% { transform: translateY(-18px); }
+        }
+ 
+        .deco-bar {
+            width: 4px;
+            border-radius: 2px;
+            background: var(--accent);
+        }
+ 
+        /* ── Skills ── */
+        .skills-section {
+            position: relative;
+            z-index: 1;
+            padding: 5rem 2rem;
+        }
+ 
+        .section-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+ 
+        .section-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+ 
+        h2 {
+            font-size: clamp(1.6rem, 3vw, 2.4rem);
+            font-weight: 800;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+        }
+ 
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 0;
+            width: 60%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+            border-radius: 1px;
+        }
+ 
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+ 
+        .skill-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.6rem 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.8rem;
+            cursor: default;
+            transition: transform 0.3s ease, border-color 0.3s, box-shadow 0.3s, background 0.3s;
+            backdrop-filter: blur(8px);
+            position: relative;
+            overflow: hidden;
+        }
+ 
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(0,198,255,0.06), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+ 
+        .skill-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(0,198,255,0.4);
+            box-shadow: 0 12px 40px rgba(0,114,255,0.2), 0 0 0 1px rgba(0,198,255,0.15);
+            background: rgba(0,198,255,0.05);
+        }
+ 
+        .skill-card:hover::before { opacity: 1; }
+ 
+        .skill-card img {
+            width: 44px;
+            height: 44px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));
+            transition: transform 0.3s;
+        }
+ 
+        .skill-card:hover img { transform: scale(1.1); }
+ 
+        .skill-card span {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text);
+            text-align: center;
+        }
+ 
+        /* ── Footer ── */
+        footer {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 0.85rem;
+        }
+ 
+        footer span {
+            color: var(--accent);
+        }
+ 
+        /* ── Responsive ── */
+        @media (max-width: 640px) {
+            .skills-grid { grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+            .hero-decoration { display: none; }
+        }
+    </style>
+</head>
+<body>
+ 
+    <header>
+        <nav>
+            <div class="logo">عبدالعزيز علي</div>
+            <ul>
+                <li><a href="index.html" class="active">الرئيسية</a></li>
+                <li><a href="projects.html">المشاريع</a></li>
+                <li><a href="contact.html">تواصل معي</a></li>
+            </ul>
+        </nav>
+    </header>
+ 
+    <!-- Decorative floating bars -->
+    <div class="hero-decoration" aria-hidden="true">
+        <div class="deco-bar" style="height:80px"></div>
+        <div class="deco-bar" style="height:40px; opacity:.6"></div>
+        <div class="deco-bar" style="height:120px"></div>
+        <div class="deco-bar" style="height:30px; opacity:.4"></div>
+    </div>
+ 
+    <section class="hero">
+        <div class="hero-inner">
+            <div class="badge">محلل بيانات · Data Analyst</div>
+            <h1>أهلاً بك، أنا <span class="name">عبدالعزيز علي</span></h1>
+            <div class="hero-divider"></div>
+            <p class="tagline">محلل بيانات متخصص في فك شفرات الأرقام وتحويلها إلى حلول استراتيجية وقصص نجاح.</p>
+            <p class="about-text">شغوف باكتشاف الأنماط المخفية وراء البيانات المعقدة. أمتلك عيناً فاحصة لتحليل الاتجاهات ومهارة في صياغة الرؤى بأسلوب بصري تفاعلي يدعم اتخاذ أذكى القرارات المبنية على الحقائق. هدفي ليس مجرد تحليل الماضي، بل استشراف حلول المستقبل.</p>
+        </div>
+    </section>
+ 
+    <section class="skills-section">
+        <div class="section-inner">
+            <p class="section-label">Skills & Tools</p>
+            <h2>مهاراتي التقنية</h2>
+            <div class="skills-grid">
+ 
+                <div class="skill-card">
+                    <img src="https://www.vectorlogo.zone/logos/mysql/mysql-official.svg" alt="SQL">
+                    <span>SQL / MySQL</span>
+                </div>
+ 
+                 <div class="skill-card">
+                <img src="excel.png" alt="Excel"> 
+                <span>Excel</span>
+            </div>
+ 
+                <div class="skill-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg" alt="Power BI">
+                    <span>Power BI</span>
+                </div>
+ 
+                <div class="skill-card">
+                    <img src="https://cdn.worldvectorlogo.com/logos/tableau-software.svg" alt="Tableau">
+                    <span>Tableau</span>
+                </div>
+ 
+                <div class="skill-card">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
+                    <span>Python</span>
+                </div>
+ 
+                <div class="skill-card">
+                    <img src="https://streamlit.io/images/brand/streamlit-mark-color.svg" alt="Streamlit">
+                    <span>Streamlit</span>
+                </div>
+ 
+                <div class="skill-card">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git">
+                    <span>Git / GitHub</span>
+                </div>
+ 
+                <div class="skill-card">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="Database">
+                    <span>Database Admin</span>
+                </div>
+ 
+                <div class="skill-card">
+                    <!-- n8n SVG inline since no reliable CDN -->
+                    <svg width="44" height="44" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="200" height="200" rx="40" fill="#ea4b71"/>
+                        <text x="50%" y="58%" dominant-baseline="middle" text-anchor="middle"
+                              font-family="Arial Black,sans-serif" font-size="72" font-weight="900" fill="white">n8n</text>
+                    </svg>
+                    <span>n8n Automation</span>
+                </div>
+ 
+            </div>
+        </div>
+    </section>
+ 
+    <footer>
+        <p>جميع الحقوق محفوظة © 2026 — <span>عبدالعزيز علي</span></p>
+    </footer>
+ 
+</body>
+</html>

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المشاريع | عبدالعزيز علي</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.92);
+            z-index: 1000;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .lightbox-overlay.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox-container {
+            position: relative;
+            max-width: 90%;
+            max-height: 90vh;
+            animation: zoomIn 0.3s ease-in-out;
+        }
+
+        .lightbox-image {
+            width: 100%;
+            height: auto;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 12px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -44px;
+            right: -44px;
+            width: 42px;
+            height: 42px;
+            background-color: rgba(255, 255, 255, 0.16);
+            border: none;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            background-color: rgba(255, 255, 255, 0.28);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.18);
+            border: none;
+            color: white;
+            font-size: 24px;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+            z-index: 1001;
+        }
+
+        .lightbox-nav:hover {
+            background-color: rgba(255, 255, 255, 0.32);
+        }
+
+        .lightbox-prev {
+            left: -60px;
+        }
+
+        .lightbox-next {
+            right: -60px;
+        }
+
+        .lightbox-counter {
+            position: absolute;
+            bottom: -42px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 14px;
+            background-color: rgba(0, 0, 0, 0.55);
+            padding: 8px 16px;
+            border-radius: 8px;
+        }
+
+        .portfolio-item .item-visual img,
+        .portfolio-item iframe {
+            cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .portfolio-item .item-visual img:hover,
+        .portfolio-item iframe:hover {
+            transform: scale(1.01);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.92);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .lightbox-close {
+                top: 10px;
+                right: 10px;
+            }
+
+            .lightbox-nav {
+                padding: 8px 12px;
+                font-size: 20px;
+            }
+
+            .lightbox-prev {
+                left: 10px;
+            }
+
+            .lightbox-next {
+                right: 10px;
+            }
+
+            .lightbox-counter {
+                bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body class="projects-page">
+
+    <header>
+        <nav>
+            <div class="logo">عبدالعزيز علي</div>
+            <ul>
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="projects.html" class="active">المشاريع</a></li>
+                <li><a href="contact.html">تواصل معي</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <section class="projects-hero">
+            <div class="projects-hero-content">
+                <div class="page-badge">💼 معرض الأعمال · Data & Automation</div>
+                <h1 class="projects-title">
+                    أعمالي في <span class="highlight">تحليل البيانات</span> والأتمتة
+                </h1>
+                <p class="projects-subtitle">
+                    مجموعة من المشاريع التي تعكس خبرتي في بناء لوحات المعلومات، تحليل البيانات،
+                    وتصميم حلول أتمتة ذكية بأسلوب احترافي وتفاعلي.
+                </p>
+            </div>
+        </section>
+
+        <div class="portfolio-grid-system">
+
+            <div class="portfolio-item large-item">
+                <div class="item-header">
+                    <h3>تحليل مراجعات أمازون (تفاعلي مباشر)</h3>
+                </div>
+                <div class="item-visual">
+                    <iframe
+                        src="https://amazon-reviews-dashboard-beyzzjpp8j45eh3ewz57xd.streamlit.app/?embed=true"
+                        class="lightbox-trigger"
+                        data-type="iframe">
+                    </iframe>
+                </div>
+                <div class="item-details">
+                    <p>
+                        لوحة تفاعلية لتحليل مشاعر العملاء وتصنيف المراجعات واستخراج مؤشرات مهمة
+                        باستخدام Python و Streamlit بشكل عملي وواضح.
+                    </p>
+                    <a href="https://amazon-reviews-dashboard-beyzzjpp8j45eh3ewz57xd.streamlit.app" target="_blank" class="btn-link">
+                        فتح الرابط المباشر
+                    </a>
+                </div>
+            </div>
+
+            <div class="portfolio-item large-item rect-item">
+                <div class="item-header">
+                    <h3>نظام أتمتة ذكي (AI Automation Workflow)</h3>
+                </div>
+                <div class="item-visual">
+                    <img src="automation_flow.jpeg" alt="Automation Workflow" class="lightbox-trigger" data-type="image">
+                </div>
+                <div class="item-details">
+                    <p>
+                        تصميم تدفق أتمتة يربط Telegram بوكيل ذكاء اصطناعي عبر n8n لتنفيذ مهام ذكية
+                        وتقليل العمل اليدوي ورفع الكفاءة التشغيلية.
+                    </p>
+                </div>
+            </div>
+
+            <div class="small-items-row">
+                <div class="portfolio-item">
+                    <div class="item-visual small-v">
+                        <img src="cyber_project.jpg" alt="Cybersecurity Dashboard" class="lightbox-trigger" data-type="image">
+                    </div>
+                    <div class="item-details">
+                        <h3>التهديدات السيبرانية</h3>
+                        <p>تحليل بصري لبيانات الهجمات العالمية خلال الفترة 2015 - 2024 مع مؤشرات ورؤى واضحة.</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <div class="item-visual small-v">
+                        <img src="tourism_dashboard.png" alt="Tourism Dashboard" class="lightbox-trigger" data-type="image">
+                    </div>
+                    <div class="item-details">
+                        <h3>السياحة السعودية</h3>
+                        <p>مشروع تحليلي باستخدام Tableau لعرض مؤشرات السياحة والاتجاهات بشكل مبسط واحترافي.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="small-items-row">
+                <div class="portfolio-item">
+                    <div class="item-visual small-v">
+                        <img src="school.jpg" alt="Schools Distribution Dashboard" class="lightbox-trigger" data-type="image">
+                    </div>
+                    <div class="item-details">
+                        <h3>توزيع المدارس</h3>
+                        <p>دراسة تحليلية للتخطيط المكاني وتوزيع المدارس مع إبراز الفروقات والأنماط بين المناطق.</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <div class="item-visual small-v">
+                        <img src="markt.jpg" alt="Marketing Performance Dashboard" class="lightbox-trigger" data-type="image">
+                    </div>
+                    <div class="item-details">
+                        <h3>أداء التسويق</h3>
+                        <p>داشبورد احترافي لقياس مؤشرات الأداء الرئيسية وتحليل نتائج الحملات التسويقية.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="footer-simple">
+        <p>جميع الحقوق محفوظة © 2026 - عبدالعزيز علي</p>
+    </footer>
+
+    <div class="lightbox-overlay" id="lightboxOverlay">
+        <div class="lightbox-container">
+            <img id="lightboxImage" class="lightbox-image" alt="صورة مكبرة">
+            <button class="lightbox-close" id="lightboxClose">&times;</button>
+            <button class="lightbox-nav lightbox-prev" id="lightboxPrev">&#10094;</button>
+            <button class="lightbox-nav lightbox-next" id="lightboxNext">&#10095;</button>
+            <div class="lightbox-counter" id="lightboxCounter"></div>
+        </div>
+    </div>
+
+    <script>
+        class Lightbox {
+            constructor() {
+                this.overlay = document.getElementById('lightboxOverlay');
+                this.image = document.getElementById('lightboxImage');
+                this.closeBtn = document.getElementById('lightboxClose');
+                this.prevBtn = document.getElementById('lightboxPrev');
+                this.nextBtn = document.getElementById('lightboxNext');
+                this.counter = document.getElementById('lightboxCounter');
+                this.currentIndex = 0;
+                this.images = [];
+                this.init();
+            }
+
+            init() {
+                this.images = Array.from(document.querySelectorAll('.lightbox-trigger[data-type="image"]'));
+
+                this.images.forEach((img, index) => {
+                    img.addEventListener('click', () => this.open(index));
+                });
+
+                this.closeBtn.addEventListener('click', () => this.close());
+                this.prevBtn.addEventListener('click', () => this.prev());
+                this.nextBtn.addEventListener('click', () => this.next());
+
+                this.overlay.addEventListener('click', (e) => {
+                    if (e.target === this.overlay) this.close();
+                });
+
+                document.addEventListener('keydown', (e) => {
+                    if (this.overlay.classList.contains('active')) {
+                        if (e.key === 'Escape') this.close();
+                        if (e.key === 'ArrowLeft') this.next();
+                        if (e.key === 'ArrowRight') this.prev();
+                    }
+                });
+            }
+
+            open(index) {
+                this.currentIndex = index;
+                this.image.src = this.images[index].src;
+                this.overlay.classList.add('active');
+                this.updateCounter();
+                document.body.style.overflow = 'hidden';
+            }
+
+            close() {
+                this.overlay.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+
+            next() {
+                this.currentIndex = (this.currentIndex + 1) % this.images.length;
+                this.image.src = this.images[this.currentIndex].src;
+                this.updateCounter();
+            }
+
+            prev() {
+                this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
+                this.image.src = this.images[this.currentIndex].src;
+                this.updateCounter();
+            }
+
+            updateCounter() {
+                this.counter.textContent = `${this.currentIndex + 1} / ${this.images.length}`;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            new Lightbox();
+        });
+    </script>
+
+</body>
+</html>

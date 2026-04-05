@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تواصل معي | عبدالعزيز علي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --bg: #070d1a;
+            --border: #1a2f4a;
+            --accent: #00c6ff;
+            --accent2: #0072ff;
+            --gold: #f0c040;
+            --text: #e8f0fe;
+            --muted: #7a90aa;
+            --card-bg: rgba(15, 30, 53, 0.7);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 70% 50% at 20% 20%, rgba(0,114,255,0.13) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 40% at 85% 75%, rgba(0,198,255,0.08) 0%, transparent 55%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(0,198,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,198,255,0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ── Nav ── */
+        header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 0 2rem;
+            backdrop-filter: blur(14px);
+            background: rgba(7,13,26,0.75);
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+
+        .logo {
+            font-size: 1.15rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav ul { list-style: none; display: flex; gap: 0.25rem; }
+        nav ul a {
+            text-decoration: none;
+            color: var(--muted);
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 0.4rem 1rem;
+            border-radius: 8px;
+            transition: color 0.2s, background 0.2s;
+        }
+        nav ul a:hover, nav ul a.active {
+            color: var(--accent);
+            background: rgba(0,198,255,0.08);
+        }
+
+        /* ── Main ── */
+        main {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 100px 2rem 4rem;
+        }
+
+        .contact-inner {
+            max-width: 960px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+      h1 {
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    font-weight: 900;
+    margin-bottom: 0.75rem;
+    animation: fadeUp 0.6s ease both;
+
+    background: linear-gradient(90deg,
+        #034663 0%,     /* أزرق غامق قوي */
+        #1a5397 30%,    /* أزرق متوسط */
+        #60a5fa 90%,    /* سماوي لامع */
+        #f8fafc 100%    /* أبيض قوي */
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+
+        .subtitle {
+            color: var(--muted);
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            max-width: 520px;
+            animation: fadeUp 0.6s 0.1s ease both;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── Cards grid ── */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.6fr;
+            gap: 1.5rem;
+            animation: fadeUp 0.6s 0.2s ease both;
+        }
+
+        /* CV card */
+        .cv-card {
+            background: linear-gradient(135deg, rgba(0,114,255,0.12), rgba(0,198,255,0.05));
+            border: 1px solid rgba(0,198,255,0.25);
+            border-radius: 20px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1rem;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cv-card::before {
+            content: '';
+            position: absolute;
+            top: -30px; left: -30px;
+            width: 120px; height: 120px;
+            background: radial-gradient(circle, rgba(0,198,255,0.15), transparent 70%);
+            pointer-events: none;
+        }
+
+        .cv-icon {
+            width: 56px; height: 56px;
+            background: linear-gradient(135deg, var(--accent2), var(--accent));
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            color: white;
+            box-shadow: 0 8px 24px rgba(0,114,255,0.35);
+        }
+
+        .cv-card h2 {
+            font-size: 1.3rem;
+            font-weight: 800;
+        }
+
+        .cv-card p {
+            font-size: 0.88rem;
+            color: var(--muted);
+            line-height: 1.8;
+            flex: 1;
+        }
+
+        /* CV meta chips */
+        .cv-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .meta-chip {
+            font-size: 0.7rem;
+            font-weight: 600;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 0.2rem 0.6rem;
+            color: #94b4cc;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, var(--accent2), var(--accent));
+            color: white;
+            font-size: 0.9rem;
+            font-weight: 700;
+            padding: 0.65rem 1.4rem;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: opacity 0.2s, transform 0.2s;
+            box-shadow: 0 6px 20px rgba(0,114,255,0.3);
+        }
+
+        .download-btn:hover { opacity: 0.88; transform: translateY(-2px); }
+
+        /* Links card */
+        .links-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .link-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 1.1rem 1.25rem;
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            text-decoration: none;
+            background: rgba(255,255,255,0.02);
+            transition: background 0.25s, border-color 0.25s, transform 0.25s;
+            color: var(--text);
+        }
+
+        .link-item:hover {
+            background: rgba(0,198,255,0.06);
+            border-color: rgba(0,198,255,0.3);
+            transform: translateX(-4px);
+        }
+
+        .link-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .link-icon {
+            width: 44px; height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .icon-email { background: rgba(234,67,53,0.15); color: #ea4335; }
+        .icon-github { background: rgba(255,255,255,0.08); color: #e8f0fe; }
+        .icon-linkedin { background: rgba(10,102,194,0.2); color: #0a66c2; }
+
+        .link-text h3 { font-size: 0.95rem; font-weight: 700; }
+        .link-text p { font-size: 0.78rem; color: var(--muted); }
+
+        .link-arrow {
+            color: var(--muted);
+            font-size: 0.85rem;
+            transition: color 0.2s, transform 0.2s;
+        }
+
+        .link-item:hover .link-arrow {
+            color: var(--accent);
+            transform: translateX(-4px);
+        }
+
+        /* Footer */
+        footer {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 0.85rem;
+        }
+
+        footer span { color: var(--accent); }
+
+        @media (max-width: 700px) {
+            .contact-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav>
+        <div class="logo">عبدالعزيز علي</div>
+        <ul>
+            <li><a href="index.html">الرئيسية</a></li>
+            <li><a href="projects.html">المشاريع</a></li>
+            <li><a href="contact.html" class="active">تواصل معي</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <div class="contact-inner">
+        <p class="section-label">Contact · تواصل</p>
+        <h1>لنعمل معاً</h1>
+        <p class="subtitle">يسعدني تواصلك لمناقشة فرص التعاون في تحليل البيانات أو الأتمتة. أنا متاح دائماً للمشاريع الجديدة والتعاون المثمر.</p>
+
+        <div class="contact-grid">
+
+            <!-- CV -->
+            <div class="cv-card">
+                <div class="cv-icon"><i class="fas fa-file-lines"></i></div>
+                <h2>السيرة الذاتية</h2>
+                <p>للإطلاع على كامل خبراتي ومهاراتي التقنية وشهاداتي المهنية بالتفصيل.</p>
+                <div class="cv-meta">
+                    <span class="meta-chip">CompTIA Security+</span>
+                    <span class="meta-chip">IBM Data Analysis</span>
+                    <span class="meta-chip">MIS · جامعة جدة</span>
+                </div>
+                <a href="My_CV.pdf" class="download-btn" download>
+                    <i class="fas fa-download"></i> تحميل CV (PDF)
+                </a>
+            </div>
+
+            <!-- Links -->
+            <div class="links-card">
+
+                <a href="mailto:Aziz.ali.909.88@gmail.com" class="link-item">
+                    <div class="link-left">
+                        <div class="link-icon icon-email"><i class="fas fa-envelope"></i></div>
+                        <div class="link-text">
+                            <h3>البريد الإلكتروني</h3>
+                            <p>Aziz.ali.909.88@gmail.com</p>
+                        </div>
+                    </div>
+                    <i class="fas fa-arrow-left link-arrow"></i>
+                </a>
+
+                <a href="https://github.com/azizaliabdulah" target="_blank" class="link-item">
+                    <div class="link-left">
+                        <div class="link-icon icon-github"><i class="fab fa-github"></i></div>
+                        <div class="link-text">
+                            <h3>GitHub</h3>
+                            <p>github.com/azizaliabdulah</p>
+                        </div>
+                    </div>
+                    <i class="fas fa-arrow-left link-arrow"></i>
+                </a>
+
+                <a href="https://linkedin.com/in/abdulaziz-ali-ahmari" target="_blank" class="link-item">
+                    <div class="link-left">
+                        <div class="link-icon icon-linkedin"><i class="fab fa-linkedin-in"></i></div>
+                        <div class="link-text">
+                            <h3>LinkedIn</h3>
+                            <p>تواصل مهني · abdulaziz-ali-ahmari</p>
+                        </div>
+                    </div>
+                    <i class="fas fa-arrow-left link-arrow"></i>
+                </a>
+
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <p>جميع الحقوق محفوظة © 2026 — <span>عبدالعزيز علي</span></p>
+</footer>
+
+</body>
+</html>
